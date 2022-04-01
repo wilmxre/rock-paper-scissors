@@ -4,9 +4,6 @@ function computerPlay() {
 }
 
 function playRound(playSel, compSel) {
-    console.log(playSel);
-    console.log(compSel);
-
     if (playSel === 'rock' && compSel === 'paper') {
         return 2;
     }
@@ -43,17 +40,18 @@ function playRound(playSel, compSel) {
 function game() {
     let playerScore = 0;
     let computerScore = 0;
+    let rounds = 5;
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < rounds; i++) {
         const playerSelection = prompt(`Select Rock, Paper or Scissors for the ${i + 1}. game!`).toLowerCase();
         const computerSelection = computerPlay();
         let res = playRound(playerSelection, computerSelection);
 
-        if (playerScore == 3 || computerScore == 3) {
-            break;
-        }
-        else if (res < 0) {
-            alert("You didn't type one of the words from the listed options!");
+        console.table(i + 1, playerSelection, computerSelection);
+
+        if (res < 0) {
+            alert("You didn't type one of the words from the listed options! One more round added, try typing something valid!");
+            rounds++;
         }
         else if (res == 1) {
             playerScore++;
@@ -64,11 +62,17 @@ function game() {
         else if (res == 0) {
             playerScore += 0;
             computerScore += 0;
+            rounds++;
+            alert('It was a tie, one more round added.')
+        }
+
+        if (playerScore == 3 || computerScore == 3) {
+            break;
         }
     }
 
     if (playerScore > computerScore) {
-        alert(`You won with ${playerScore} points! The computer had only ${computerScore} points.`);
+        alert(`You won with ${playerScore} points! The computer only had ${computerScore} points.`);
     }
     else {
         alert(`You lost with ${playerScore} points! The computer won with ${computerScore} points.`);
