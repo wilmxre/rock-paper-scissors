@@ -43,14 +43,15 @@ function game() {
     let rounds = 5;
 
     for (let i = 0; i < rounds; i++) {
-        const playerSelection = prompt(`Select Rock, Paper or Scissors for the ${i + 1}. game!`).toLowerCase();
+        const playerSelection = prompt(`Select Rock, Paper or Scissors for the
+                ${i + 1}. game!`).toLowerCase();
         const computerSelection = computerPlay();
         let res = playRound(playerSelection, computerSelection);
 
         console.table(i + 1, playerSelection, computerSelection);
 
         if (res < 0) {
-            alert("You didn't type one of the words from the listed options! One more round added, try typing something valid!");
+            alert("You didn't type one of the words from the listed options!    One more round added, try typing something valid!");
             rounds++;
         }
         else if (res == 1) {
@@ -72,10 +73,12 @@ function game() {
     }
 
     if (playerScore > computerScore) {
-        alert(`You won with ${playerScore} points! The computer only had ${computerScore} points.`);
+        alert(`You won with ${playerScore} points! The computer only had
+                ${computerScore} points.`);
     }
     else {
-        alert(`You lost with ${playerScore} points! The computer won with ${computerScore} points.`);
+        alert(`You lost with ${playerScore} points! The computer won with
+                ${computerScore} points.`);
     }
 }
 
