@@ -34,7 +34,6 @@ function playRound(playSel, compSel) {
 	else {
 		return -1;
 	}
-
 }
 
 function game(playerSelection) {
@@ -53,29 +52,17 @@ function game(playerSelection) {
 	}
 
 	return score;
-
-	// if (playerScore > computerScore) {
-	//     alert(`You won with ${playerScore} points! The computer only had
-	//             ${computerScore} points.`);
-	// }
-	// else if (playerScore < computerScore) {
-	//     alert(`You lost with ${playerScore} points! The computer won with
-	//             ${computerScore} points.`);
-	// }
-	// else {
-	//     alert(`It was a tie, you both picked ${playerSelection}`)
-	// }
 }
 
 let whoWon = (score) => {
 	if (score[0] > score[1]) {
-		return 'The player has won!';
+		return 1;
 	}
 	else if (score[0] < score[1]) {
-		return 'The computer has won!';
+		return 2;
 	}
 	else {
-		return 'It was a tie!';
+		return 0;
 	}
 }
 
@@ -83,17 +70,52 @@ const container = document.querySelector('.container');
 const results = container.querySelector('.results');
 const buttons = document.querySelectorAll('button');
 
-buttons.forEach((btn) => {
-	btn.addEventListener('click', (e) => {
-		if (e.target.className === 'btn-rock') {
-			results.textContent = whoWon(game('rock'));
-		}
-		else if (e.target.className === 'btn-paper') {
-			results.textContent = whoWon(game('paper'));
-		}
-		else if (e.target.className === 'btn-scissors') {
-			results.textContent = whoWon(game('scissors'));
-		}
-	});
-});
+const player = document.createElement('div');
+const computer = document.createElement('div');
+const ties = document.createElement('div');
+const winner = document.createElement('div');
 
+function UI() {
+	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
+	let totalScore = [0, 0, 0];
+
+	buttons.forEach((btn) => {
+		btn.addEventListener('click', function showResults(e) {
+			winner.textContent = '';
+			if (e.target.className === 'btn-rock') {
+				totalScore[whoWon(game('rock'))]++;
+			}
+			else if (e.target.className === 'btn-paper') {
+				totalScore[whoWon(game('paper'))]++;
+			}
+			else if (e.target.className === 'btn-scissors') {
+				totalScore[whoWon(game('scissors'))]++;
+			}
+
+			player.textContent = `Player: ${totalScore[1]}`;
+			results.appendChild(player);
+			computer.textContent = `Computer: ${totalScore[2]}`;
+			results.appendChild(computer);
+			ties.textContent = `Ties: ${totalScore[0]}`;
+			results.appendChild(ties);
+
+			if (totalScore[1] == 5) {
+				winner.textContent = `You won!`;
+				results.appendChild(winner);
+				totalScore[0] = 0;
+				totalScore[1] = 0;
+				totalScore[2] = 0;
+			}
+			else if (totalScore[2] == 5) {
+				winner.textContent = `You won!`;
+				results.appendChild(winner);
+				totalScore[0] = 0;
+				totalScore[1] = 0;
+				totalScore[2] = 0;
+			}
+		}
+		);
+	});
+}
+
+UI();
