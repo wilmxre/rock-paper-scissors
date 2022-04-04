@@ -77,7 +77,7 @@ const winner = document.createElement('div');
 const score = document.createElement('div');
 
 function UI() {
-	let totalScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
+	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
 	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
 
 	buttons.forEach((btn) => {
@@ -87,26 +87,26 @@ function UI() {
 			results.appendChild(score);
 
 			if (e.target.className === 'btn-rock') {
-				totalScore[whoWon(game('rock'))]++;
+				individualScore[whoWon(game('rock'))]++;
 			}
 			else if (e.target.className === 'btn-paper') {
-				totalScore[whoWon(game('paper'))]++;
+				individualScore[whoWon(game('paper'))]++;
 			}
 			else if (e.target.className === 'btn-scissors') {
-				totalScore[whoWon(game('scissors'))]++;
+				individualScore[whoWon(game('scissors'))]++;
 			}
 
-			player.textContent = `Player: ${totalScore[1]}`;
+			player.textContent = `Player: ${individualScore[1]}`;
 			results.appendChild(player);
-			computer.textContent = `Computer: ${totalScore[2]}`;
+			computer.textContent = `Computer: ${individualScore[2]}`;
 			results.appendChild(computer);
-			ties.textContent = `Ties: ${totalScore[0]}`;
+			ties.textContent = `Ties: ${individualScore[0]}`;
 			results.appendChild(ties);
 
-			if (totalScore[1] == 5) {
-				totalScore[0] = 0;
-				totalScore[1] = 0;
-				totalScore[2] = 0;
+			if (individualScore[1] == 5) {
+				individualScore[0] = 0;
+				individualScore[1] = 0;
+				individualScore[2] = 0;
 				overallScore[0]++;
 
 				winner.textContent = `You won!`;
@@ -116,10 +116,10 @@ function UI() {
 				computer.textContent = '';
 				ties.textContent = '';
 			}
-			else if (totalScore[2] == 5) {
-				totalScore[0] = 0;
-				totalScore[1] = 0;
-				totalScore[2] = 0;
+			else if (individualScore[2] == 5) {  //make sure to implement custom round number in the future, from user input
+				individualScore[0] = 0;
+				individualScore[1] = 0;
+				individualScore[2] = 0;
 				overallScore[1]++;
 
 				winner.textContent = `The computer won!`;
