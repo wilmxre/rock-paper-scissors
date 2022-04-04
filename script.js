@@ -38,8 +38,7 @@ function playRound(playSel, compSel) {
 }
 
 function game(playerSelection) {
-	let playerScore = 0;
-	let computerScore = 0;
+	let score = [0, 0];	//storing the score: score[0] -> player, score[1] -> computer
 
 	const computerSelection = computerPlay();
 	let res = playRound(playerSelection, computerSelection);
@@ -47,11 +46,13 @@ function game(playerSelection) {
 	console.table(playerSelection, computerSelection);
 
 	if (res == 1) {
-		playerScore++;
+		score[0]++;
 	}
 	else if (res == 2) {
-		computerScore++;
+		score[1]++;
 	}
+
+	return score;
 
 	// if (playerScore > computerScore) {
 	//     alert(`You won with ${playerScore} points! The computer only had
@@ -66,22 +67,32 @@ function game(playerSelection) {
 	// }
 }
 
-game('rock');
+let whoWon = (score) => {
+	if (score[0] > score[1]) {
+		return 'The player has won!';
+	}
+	else if (score[0] < score[1]) {
+		return 'The computer has won!';
+	}
+	else {
+		return 'It was a tie!';
+	}
+}
 
-// const container = document.querySelector('.container');
+const container = document.querySelector('.container');
+const results = container.querySelector('.results');
 const buttons = document.querySelectorAll('button');
-// console.log(buttons);
 
 buttons.forEach((btn) => {
 	btn.addEventListener('click', (e) => {
 		if (e.target.className === 'btn-rock') {
-			game('rock');
+			results.textContent = whoWon(game('rock'));
 		}
 		else if (e.target.className === 'btn-paper') {
-			game('paper')
+			results.textContent = whoWon(game('paper'));
 		}
 		else if (e.target.className === 'btn-scissors') {
-			game('scissors')
+			results.textContent = whoWon(game('scissors'));
 		}
 	});
 });
