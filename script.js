@@ -111,6 +111,10 @@ function UI() {
 
 				winner.textContent = `You won!`;
 				results.appendChild(winner);
+
+				player.textContent = '';
+				computer.textContent = '';
+				ties.textContent = '';
 			}
 			else if (totalScore[2] == 5) {
 				totalScore[0] = 0;
@@ -120,6 +124,10 @@ function UI() {
 
 				winner.textContent = `The computer won!`;
 				results.appendChild(winner);
+
+				player.textContent = '';
+				computer.textContent = '';
+				ties.textContent = '';
 			}
 		}
 		);
