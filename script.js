@@ -83,6 +83,9 @@ function UI() {
 	buttons.forEach((btn) => {
 		btn.addEventListener('click', function showResults(e) {
 			winner.textContent = '';
+			score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
+			results.appendChild(score);
+
 			if (e.target.className === 'btn-rock') {
 				totalScore[whoWon(game('rock'))]++;
 			}
@@ -107,10 +110,7 @@ function UI() {
 				overallScore[0]++;
 
 				winner.textContent = `You won!`;
-				score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
-
 				results.appendChild(winner);
-				results.appendChild(score);
 			}
 			else if (totalScore[2] == 5) {
 				totalScore[0] = 0;
@@ -119,10 +119,7 @@ function UI() {
 				overallScore[1]++;
 
 				winner.textContent = `The computer won!`;
-				score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
-
 				results.appendChild(winner);
-				results.appendChild(score);
 			}
 		}
 		);
