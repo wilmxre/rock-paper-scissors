@@ -74,10 +74,11 @@ const player = document.createElement('div');
 const computer = document.createElement('div');
 const ties = document.createElement('div');
 const winner = document.createElement('div');
+const score = document.createElement('div');
 
 function UI() {
-	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
-	let totalScore = [0, 0, 0];
+	let totalScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
+	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
 
 	buttons.forEach((btn) => {
 		btn.addEventListener('click', function showResults(e) {
@@ -100,18 +101,28 @@ function UI() {
 			results.appendChild(ties);
 
 			if (totalScore[1] == 5) {
-				winner.textContent = `You won!`;
-				results.appendChild(winner);
 				totalScore[0] = 0;
 				totalScore[1] = 0;
 				totalScore[2] = 0;
+				overallScore[0]++;
+
+				winner.textContent = `You won!`;
+				score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
+
+				results.appendChild(winner);
+				results.appendChild(score);
 			}
 			else if (totalScore[2] == 5) {
-				winner.textContent = `You won!`;
-				results.appendChild(winner);
 				totalScore[0] = 0;
 				totalScore[1] = 0;
 				totalScore[2] = 0;
+				overallScore[1]++;
+
+				winner.textContent = `The computer won!`;
+				score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
+
+				results.appendChild(winner);
+				results.appendChild(score);
 			}
 		}
 		);
