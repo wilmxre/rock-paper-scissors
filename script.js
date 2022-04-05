@@ -68,7 +68,9 @@ let whoWon = (score) => {
 
 const container = document.querySelector('.container');
 const results = container.querySelector('.results');
-const buttons = document.querySelectorAll('.btn');
+const button = document.querySelectorAll('.btn');
+
+const buttons = document.querySelector('.buttons');
 
 const player = document.createElement('div');
 const computer = document.createElement('div');
@@ -80,11 +82,11 @@ function UI() {
 	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
 	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
 
-	buttons.forEach((btn) => {
+	button.forEach((btn) => {
 		btn.addEventListener('click', (e) => {
 			winner.textContent = '';
-			score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
-			results.appendChild(score);
+			// score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
+			// results.appendChild(score);
 
 			if (e.target.className === 'rock') {
 				individualScore[whoWon(game('rock'))]++;
@@ -96,12 +98,12 @@ function UI() {
 				individualScore[whoWon(game('scissors'))]++;
 			}
 
-			player.textContent = `Player: ${individualScore[1]}`;
-			results.appendChild(player);
-			computer.textContent = `Computer: ${individualScore[2]}`;
-			results.appendChild(computer);
-			ties.textContent = `Ties: ${individualScore[0]}`;
-			results.appendChild(ties);
+			// player.textContent = `Player: ${individualScore[1]}`;
+			// results.appendChild(player);
+			// computer.textContent = `Computer: ${individualScore[2]}`;
+			// results.appendChild(computer);
+			// ties.textContent = `Ties: ${individualScore[0]}`;
+			// results.appendChild(ties);
 
 			if (individualScore[1] == 5) {
 				individualScore[0] = 0;
@@ -110,11 +112,14 @@ function UI() {
 				overallScore[0]++;
 
 				winner.textContent = `You won!`;
-				results.appendChild(winner);
+				// results.appendChild(winner);
 
 				player.textContent = '';
 				computer.textContent = '';
 				ties.textContent = '';
+
+				container.removeChild(buttons);
+				results.appendChild(winner);
 			}
 			else if (individualScore[2] == 5) {  //make sure to implement custom round number in the future, from user input
 				individualScore[0] = 0;
@@ -123,11 +128,14 @@ function UI() {
 				overallScore[1]++;
 
 				winner.textContent = `The computer won!`;
-				results.appendChild(winner);
+				// results.appendChild(winner);
 
 				player.textContent = '';
 				computer.textContent = '';
 				ties.textContent = '';
+
+				container.removeChild(buttons);
+				results.appendChild(winner);
 			}
 		}
 		);
