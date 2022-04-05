@@ -79,7 +79,7 @@ const playerScore = document.createElement('div');
 const computerScore = document.createElement('div');
 const scoreDiv = document.querySelector('.score');
 const messageDiv = document.querySelector('.message');
-const tryAgain = document.createElement('p');
+const tryAgain = document.createElement('span');
 
 tryAgain.textContent = 'Try again.';
 

@@ -9,7 +9,49 @@
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  background-color: #6610f2;
+  background-color: #342e37;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c6d8ff;
+  user-select: none;
+}
+
+.score {
+  display: flex;
+}
+
+.score-player,
+.score-computer {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FBC688;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.message h2 {
+  font-size: 6rem;
+  text-align: center;
+  color: #FBCF9D;
+}
+
+.message span {
+  display: flex;
+  justify-content: center;
+  font-size: 2.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #FBBA72;
+
 }
 
 .buttons {
@@ -35,96 +77,28 @@
 .btn span:hover {
   transform: scale(1.05);
   transition: 125ms;
+  animation: shadow 0.3s both;
+
 }
 
 .btn-rock {
-  background-color: #88d18a;
+  background-color: #86BBBD;
 }
 
 .btn-paper {
-  background-color: #fcbf49;
+  background-color: #fce762;
 }
 
-.btn.btn-scissors {
-  background-color: #fe5f55;
+.btn-scissors {
+  background-color: #F24236;
 }
 
-.btn-rock span:hover {
-  animation: shadow-rock 100ms both;
-}
-
-@keyframes shadow-rock {
+@keyframes shadow {
   0% {
     text-shadow: 0 0 0 #000;
   }
 
   100% {
-    text-shadow: 0 0 .5rem #8988d1;
+    text-shadow: 0 0 .5rem #342E37;
   }
-}
-
-.btn-paper span:hover {
-  animation: shadow-paper 0.3s both;
-}
-
-@keyframes shadow-paper {
-  0% {
-    text-shadow: 0 0 0 #000;
-  }
-
-  100% {
-    text-shadow: 0 0 .5rem #fc49c3;
-  }
-}
-
-.btn-scissors span:hover {
-  animation: shadow-scissors 0.3s both;
-}
-
-@keyframes shadow-scissors {
-  0% {
-    text-shadow: 0 0 0 #000;
-  }
-
-  100% {
-    text-shadow: 0 0 .5rem #fcbf49;
-  }
-}
-
-.results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #c6d8ff;
-  user-select: none;
-}
-
-.score {
-  display: flex;
-}
-
-.score-player,
-.score-computer {
-  padding: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.message h2 {
-  font-size: 6rem;
-
-  text-align: center;
-}
-
-.message p {
-  font-size: 2.4rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
 }
