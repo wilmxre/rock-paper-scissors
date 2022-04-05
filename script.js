@@ -81,12 +81,12 @@ const score = document.createElement('div');
 const tryAgain = document.createElement('p');
 tryAgain.textContent = 'Try again.';
 
-function UI() {
+let UI = function () {
 	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
 	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
 
 	button.forEach((btn) => {
-		btn.addEventListener('click', (e) => {
+		btn.addEventListener('click', function (e) {
 			winner.textContent = '';
 			// score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
 			// results.appendChild(score);
@@ -115,7 +115,6 @@ function UI() {
 				overallScore[0]++;
 
 				winner.textContent = `You won!`;
-				// results.appendChild(winner);
 
 				player.textContent = '';
 				computer.textContent = '';
@@ -133,7 +132,6 @@ function UI() {
 				overallScore[1]++;
 
 				winner.textContent = `The computer won!`;
-				// results.appendChild(winner);
 
 				player.textContent = '';
 				computer.textContent = '';
@@ -144,8 +142,7 @@ function UI() {
 				results.appendChild(tryAgain);
 				again();
 			}
-		}
-		);
+		});
 	});
 }
 
@@ -153,10 +150,9 @@ UI();
 
 function again() {
 	tryAgain.addEventListener('click', (e) => {
-		console.log(e);
+		console.log(winner);
 		results.removeChild(winner);
 		results.removeChild(tryAgain);
 		container.appendChild(buttons);
-		UI();
-	});
+	}, { once: true });  //execute 'tryAgain' only once; without this, the code executes once->twice->...
 }
