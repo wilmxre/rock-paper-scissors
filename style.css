@@ -1,3 +1,13 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,18 +20,18 @@
   height: 100vh;
   justify-content: center;
   background-color: #342e37;
+
 }
 
 .results {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: #c6d8ff;
   user-select: none;
 }
 
 .score {
   display: flex;
+  margin: 0 auto;
 }
 
 .score-player,
@@ -54,6 +64,56 @@
 
 }
 
+.current-score {
+  display: flex;
+  font-size: 1.4rem;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  color: #070D0D;
+  font-size: 1.1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2rem;
+}
+
+.highlight {
+  border: 10px solid black;
+}
+
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -61,6 +121,7 @@
 
 .btn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 33.33vh;
@@ -82,7 +143,7 @@
 }
 
 .btn-rock {
-  background-color: #86BBBD;
+  background-color: #61A6A8;
 }
 
 .btn-paper {
