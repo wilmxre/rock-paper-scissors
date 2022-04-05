@@ -68,7 +68,7 @@ let whoWon = (score) => {
 
 const container = document.querySelector('.container');
 const results = container.querySelector('.results');
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.buttons');
 
 const player = document.createElement('div');
 const computer = document.createElement('div');
@@ -86,13 +86,13 @@ function UI() {
 			score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
 			results.appendChild(score);
 
-			if (e.target.className === 'btn-rock') {
+			if (e.target.className.match('^(?=.*btn-rock).*')) {
 				individualScore[whoWon(game('rock'))]++;
 			}
-			else if (e.target.className === 'btn-paper') {
+			else if (e.target.className.match('^(?=.*btn-paper).*')) {
 				individualScore[whoWon(game('paper'))]++;
 			}
-			else if (e.target.className === 'btn-scissors') {
+			else if (e.target.className.match('^(?=.*btn-scissors).*')) {
 				individualScore[whoWon(game('scissors'))]++;
 			}
 

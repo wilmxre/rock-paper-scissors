@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  font-size: 8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn.btn-rock {
+  background-color: #88d18a;
+}
+
+.btn.btn-paper {
+  background-color: #fcbf49;
+}
+
+.btn.btn-scissors {
+  background-color: #fe5f55;
+}
