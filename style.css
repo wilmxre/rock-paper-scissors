@@ -19,19 +19,66 @@
   justify-content: center;
   align-items: center;
   height: 30vh;
-  font-size: 8rem;
+  font-size: 6rem;
   cursor: pointer;
   user-select: none;
 }
 
-.btn.btn-rock {
+.btn span:hover {
+  transform: scale(1.05);
+  transition: 125ms;
+}
+
+.btn-rock {
   background-color: #88d18a;
 }
 
-.btn.btn-paper {
+.btn-paper {
   background-color: #fcbf49;
 }
 
 .btn.btn-scissors {
   background-color: #fe5f55;
+}
+
+.btn-rock span:hover {
+  animation: shadow-rock 100ms both;
+}
+
+@keyframes shadow-rock {
+  0% {
+    text-shadow: 0 0 0 #000;
+  }
+
+  100% {
+    text-shadow: 0 0 .5rem #8988d1;
+  }
+}
+
+.btn-paper span:hover {
+  animation: shadow-paper 0.3s both;
+}
+
+@keyframes shadow-paper {
+  0% {
+    text-shadow: 0 0 0 #000;
+  }
+
+  100% {
+    text-shadow: 0 0 .5rem #fc49c3;
+  }
+}
+
+.btn-scissors span:hover {
+  animation: shadow-scissors 0.3s both;
+}
+
+@keyframes shadow-scissors {
+  0% {
+    text-shadow: 0 0 0 #000;
+  }
+
+  100% {
+    text-shadow: 0 0 .5rem #fcbf49;
+  }
 }

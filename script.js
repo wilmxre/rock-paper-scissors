@@ -68,7 +68,7 @@ let whoWon = (score) => {
 
 const container = document.querySelector('.container');
 const results = container.querySelector('.results');
-const buttons = document.querySelectorAll('.buttons');
+const buttons = document.querySelectorAll('.btn');
 
 const player = document.createElement('div');
 const computer = document.createElement('div');
@@ -81,18 +81,18 @@ function UI() {
 	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
 
 	buttons.forEach((btn) => {
-		btn.addEventListener('click', function showResults(e) {
+		btn.addEventListener('click', (e) => {
 			winner.textContent = '';
 			score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
 			results.appendChild(score);
 
-			if (e.target.className.match('^(?=.*btn-rock).*')) {
+			if (e.target.className === 'rock') {
 				individualScore[whoWon(game('rock'))]++;
 			}
-			else if (e.target.className.match('^(?=.*btn-paper).*')) {
+			else if (e.target.className === 'paper') {
 				individualScore[whoWon(game('paper'))]++;
 			}
-			else if (e.target.className.match('^(?=.*btn-scissors).*')) {
+			else if (e.target.className === 'scissors') {
 				individualScore[whoWon(game('scissors'))]++;
 			}
 
