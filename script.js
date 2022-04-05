@@ -78,6 +78,9 @@ const ties = document.createElement('div');
 const winner = document.createElement('div');
 const score = document.createElement('div');
 
+const tryAgain = document.createElement('p');
+tryAgain.textContent = 'Try again.';
+
 function UI() {
 	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
 	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
@@ -120,6 +123,8 @@ function UI() {
 
 				container.removeChild(buttons);
 				results.appendChild(winner);
+				results.appendChild(tryAgain);
+				again();
 			}
 			else if (individualScore[2] == 5) {  //make sure to implement custom round number in the future, from user input
 				individualScore[0] = 0;
@@ -136,6 +141,8 @@ function UI() {
 
 				container.removeChild(buttons);
 				results.appendChild(winner);
+				results.appendChild(tryAgain);
+				again();
 			}
 		}
 		);
@@ -143,3 +150,13 @@ function UI() {
 }
 
 UI();
+
+function again() {
+	tryAgain.addEventListener('click', (e) => {
+		console.log(e);
+		results.removeChild(winner);
+		results.removeChild(tryAgain);
+		container.appendChild(buttons);
+		UI();
+	});
+}
