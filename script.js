@@ -69,17 +69,23 @@ let whoWon = (score) => {
 const container = document.querySelector('.container');
 const results = container.querySelector('.results');
 const button = document.querySelectorAll('.btn');
-
 const buttons = document.querySelector('.buttons');
 
 const player = document.createElement('div');
 const computer = document.createElement('div');
 const ties = document.createElement('div');
-const winner = document.createElement('div');
-const score = document.createElement('div');
-
+const winner = document.createElement('h2');
+const playerScore = document.createElement('div');
+const computerScore = document.createElement('div');
+const scoreDiv = document.querySelector('.score');
+const messageDiv = document.querySelector('.message');
 const tryAgain = document.createElement('p');
+
 tryAgain.textContent = 'Try again.';
+
+playerScore.classList.add('score-player');
+computerScore.classList.add('score-computer');
+
 
 let UI = function () {
 	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
@@ -88,8 +94,6 @@ let UI = function () {
 	button.forEach((btn) => {
 		btn.addEventListener('click', function (e) {
 			winner.textContent = '';
-			// score.textContent = `The overall score is: @Player:: ${overallScore[0]}, @Computer:: ${overallScore[1]}`;
-			// results.appendChild(score);
 
 			if (e.target.className === 'rock') {
 				individualScore[whoWon(game('rock'))]++;
@@ -119,10 +123,15 @@ let UI = function () {
 				player.textContent = '';
 				computer.textContent = '';
 				ties.textContent = '';
+				playerScore.textContent = `Player:: ${overallScore[0]}`;
+				computerScore.textContent = `Computer:: ${overallScore[1]}`;
 
 				container.removeChild(buttons);
-				results.appendChild(winner);
-				results.appendChild(tryAgain);
+				scoreDiv.appendChild(playerScore);
+				scoreDiv.appendChild(computerScore);
+				messageDiv.appendChild(winner);
+				messageDiv.appendChild(tryAgain);
+				results.appendChild(messageDiv);
 				again();
 			}
 			else if (individualScore[2] == 5) {  //make sure to implement custom round number in the future, from user input
@@ -136,10 +145,15 @@ let UI = function () {
 				player.textContent = '';
 				computer.textContent = '';
 				ties.textContent = '';
+				playerScore.textContent = `Player:: ${overallScore[0]}`;
+				computerScore.textContent = `Computer:: ${overallScore[1]}`;
 
 				container.removeChild(buttons);
-				results.appendChild(winner);
-				results.appendChild(tryAgain);
+				scoreDiv.appendChild(playerScore);
+				scoreDiv.appendChild(computerScore);
+				messageDiv.appendChild(winner);
+				messageDiv.appendChild(tryAgain);
+				results.appendChild(messageDiv);
 				again();
 			}
 		});
@@ -151,8 +165,10 @@ UI();
 function again() {
 	tryAgain.addEventListener('click', (e) => {
 		console.log(winner);
-		results.removeChild(winner);
-		results.removeChild(tryAgain);
+		messageDiv.removeChild(winner);
+		messageDiv.removeChild(tryAgain);
+		scoreDiv.removeChild(playerScore)
+		scoreDiv.removeChild(computerScore)
 		container.appendChild(buttons);
 	}, { once: true });  //execute 'tryAgain' only once; without this, the code executes once->twice->...
 }

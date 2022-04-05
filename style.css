@@ -23,8 +23,13 @@
   align-items: center;
   height: 33.33vh;
   font-size: 6rem;
-  cursor: pointer;
   user-select: none;
+}
+
+.rock,
+.paper,
+.scissors {
+  cursor: pointer;
 }
 
 .btn span:hover {
@@ -92,17 +97,34 @@
   align-items: center;
   color: #c6d8ff;
   user-select: none;
+}
+
+.score {
+  display: flex;
+}
+
+.score-player,
+.score-computer {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
-.results div {
-  display: flex;
+.message h2 {
   font-size: 6rem;
-  font-weight: 600;
+
+  text-align: center;
 }
 
-.results p {
-  font-size: 2rem;
+.message p {
+  font-size: 2.4rem;
   font-weight: 600;
   cursor: pointer;
+  text-align: center;
 }
