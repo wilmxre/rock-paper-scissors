@@ -1,3 +1,32 @@
+const container = document.querySelector('.container');
+const results = container.querySelector('.results');
+const button = document.querySelectorAll('.btn');
+const buttons = document.querySelector('.buttons');
+const scoreDiv = document.querySelector('.score');
+const messageDiv = document.querySelector('.message');
+
+const player = document.createElement('div');
+const computer = document.createElement('div');
+const ties = document.createElement('div');
+const winner = document.createElement('h2');
+const playerScore = document.createElement('div');
+const computerScore = document.createElement('div');
+const tryAgain = document.createElement('span');
+const overlay = document.createElement('div');
+const playerOverlay = document.createElement('div');
+const computerOverlay = document.createElement('div');
+const tiesOverlay = document.createElement('div');
+
+
+tryAgain.textContent = 'Try again.';
+
+playerScore.classList.add('score-player');
+computerScore.classList.add('score-computer');
+overlay.classList.add('overlay');
+container.appendChild(overlay);
+
+
+
 function computerPlay() {
 	let arr = ['rock', 'paper', 'scissors'];
 	return arr[Math.floor(Math.random() * 3)];
@@ -42,7 +71,23 @@ function game(playerSelection) {
 	const computerSelection = computerPlay();
 	let res = playRound(playerSelection, computerSelection);
 
-	console.table(playerSelection, computerSelection);
+	if (computerSelection === 'rock') {
+		Array.from(button)[0].classList.add('highlight-rock');
+		Array.from(button)[1].classList.remove('highlight-paper');
+		Array.from(button)[2].classList.remove('highlight-scissors');
+	}
+	else if (computerSelection === 'paper') {
+		Array.from(button)[1].classList.add('highlight-paper');
+		Array.from(button)[0].classList.remove('highlight-rock');
+		Array.from(button)[2].classList.remove('highlight-scissors');
+		Array.from(button)[1].style = 'background: #fce762;';
+	}
+	else if (computerSelection === 'scissors') {
+		Array.from(button)[2].classList.add('highlight-scissors');
+		Array.from(button)[0].classList.remove('highlight-rock');
+		Array.from(button)[1].classList.remove('highlight-paper');
+		Array.from(button)[2].style = 'background: #f24236;';
+	}
 
 	if (res == 1) {
 		score[0]++;
@@ -66,60 +111,23 @@ let whoWon = (score) => {
 	}
 }
 
-const container = document.querySelector('.container');
-const results = container.querySelector('.results');
-const button = document.querySelectorAll('.btn');
-const buttons = document.querySelector('.buttons');
-const scoreDiv = document.querySelector('.score');
-const messageDiv = document.querySelector('.message');
-
-const player = document.createElement('div');
-const computer = document.createElement('div');
-const ties = document.createElement('div');
-const winner = document.createElement('h2');
-const playerScore = document.createElement('div');
-const computerScore = document.createElement('div');
-const tryAgain = document.createElement('span');
-const overlay = document.createElement('div');
-const playerOverlay = document.createElement('div');
-const computerOverlay = document.createElement('div');
-const tiesOverlay = document.createElement('div');
-
-
-tryAgain.textContent = 'Try again.';
-
-playerScore.classList.add('score-player');
-computerScore.classList.add('score-computer');
-overlay.classList.add('overlay');
-container.appendChild(overlay);
-
 
 let UI = function () {
 	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
 	let overallScore = [0, 0]; //stores the score after each final win (after bt5)
-	let game_rock = 0;
-	let game_paper = 0;
-	let game_scissors = 0;
-
-
 
 	button.forEach((btn) => {
 		btn.addEventListener('click', function (e) {
 			winner.textContent = '';
 
-			//  	console.table(game_rock, game_paper, game_scissors);
-
 			if (e.target.className === 'rock') {
-				game_rock = whoWon(game('rock'));
-				individualScore[game_rock]++;
+				individualScore[whoWon(game('rock'))]++;
 			}
 			else if (e.target.className === 'paper') {
-				game_paper = whoWon(game('paper'));
-				individualScore[game_paper]++;
+				individualScore[whoWon(game('paper'))]++;
 			}
 			else if (e.target.className === 'scissors') {
-				game_scissors = whoWon(game('scissors'));
-				individualScore[game_scissors]++;
+				individualScore[whoWon(game('scissors'))]++;
 			}
 
 			playerOverlay.textContent = `Player: ${individualScore[1]}`;

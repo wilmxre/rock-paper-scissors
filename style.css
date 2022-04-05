@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 *,
@@ -20,7 +21,6 @@ html {
   height: 100vh;
   justify-content: center;
   background-color: #342e37;
-
 }
 
 .results {
@@ -61,7 +61,6 @@ html {
   font-weight: 600;
   cursor: pointer;
   color: #FBBA72;
-
 }
 
 .current-score {
@@ -81,38 +80,63 @@ html {
   padding: 2rem;
 }
 
-.highlight {
-  border: 10px solid black;
+.highlight-rock::before,
+.highlight-paper::before,
+.highlight-scissors::before {
+  content: '';
+  position: absolute;
+  width: 20vh;
+  height: 110vw;
+  animation: animate 6s linear infinite;
 }
 
-@-webkit-keyframes slide-in-right {
+.highlight-rock::before {
+  background: linear-gradient(#fff, #61a6a8);
+}
+
+.highlight-paper::before {
+  background: linear-gradient(#000, #fce762);
+}
+
+.highlight-scissors::before {
+  background: linear-gradient(#fff, #f24236);
+}
+
+.highlight-rock,
+.highlight-paper,
+.highlight-scissors {
+  overflow: hidden;
+}
+
+.highlight-rock::after,
+.highlight-paper::after,
+.highlight-scissors::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+}
+
+.highlight-rock::after {
+  background: #61a6a8;
+}
+
+.highlight-paper::after {
+  background: #fce762;
+}
+
+.highlight-scissors::after {
+  background: #f24236;
+}
+
+@keyframes animate {
   0% {
-    -webkit-transform: translateX(1000px);
-    transform: translateX(1000px);
-    opacity: 0;
+    transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
-
-@keyframes slide-in-right {
-  0% {
-    -webkit-transform: translateX(1000px);
-    transform: translateX(1000px);
-    opacity: 0;
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 
 .buttons {
   display: flex;
@@ -127,23 +151,24 @@ html {
   height: 33.33vh;
   font-size: 6rem;
   user-select: none;
+  position: relative;
 }
 
 .rock,
 .paper,
 .scissors {
   cursor: pointer;
+  z-index: 1;
 }
 
 .btn span:hover {
   transform: scale(1.05);
   transition: 125ms;
   animation: shadow 0.3s both;
-
 }
 
 .btn-rock {
-  background-color: #61A6A8;
+  background-color: #61a6a8;
 }
 
 .btn-paper {
@@ -151,7 +176,7 @@ html {
 }
 
 .btn-scissors {
-  background-color: #F24236;
+  background-color: #f24236;
 }
 
 @keyframes shadow {
