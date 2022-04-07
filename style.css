@@ -27,11 +27,13 @@ html {
   display: flex;
   flex-direction: column;
   user-select: none;
+  min-width: 0;
 }
 
 .score {
   display: flex;
   margin: 0 auto;
+  flex-shrink: 1;
 }
 
 .score-player,
@@ -46,9 +48,13 @@ html {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  flex-shrink: 1;
 }
 
 .message h2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: 6rem;
   text-align: center;
   color: #FBCF9D;
@@ -86,7 +92,7 @@ html {
   content: '';
   position: absolute;
   width: 20vh;
-  height: 110vw;
+  height: 130vw;
   animation: animate 6s linear infinite;
 }
 
@@ -157,6 +163,7 @@ html {
 .rock,
 .paper,
 .scissors {
+  display: flex;
   cursor: pointer;
   z-index: 1;
 }
@@ -186,5 +193,11 @@ html {
 
   100% {
     text-shadow: 0 0 .5rem #342E37;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .btn {
+    font-size: 4rem;
   }
 }

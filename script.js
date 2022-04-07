@@ -111,6 +111,16 @@ let whoWon = (score) => {
 	}
 }
 
+let playSound = (e) => {
+	const audio = document.querySelector('audio[data-key="select"]');
+	if (audio == null) {
+		return;
+	}
+	else {
+		audio.currentTime = 0;
+		audio.play();
+	}
+}
 
 let UI = function () {
 	let individualScore = [0, 0, 0];	//tS[0] -> tie, tS[1] -> player, tS[2] -> computer 
@@ -119,6 +129,7 @@ let UI = function () {
 	button.forEach((btn) => {
 		btn.addEventListener('click', function (e) {
 			winner.textContent = '';
+			playSound();
 
 			if (e.target.className === 'rock') {
 				individualScore[whoWon(game('rock'))]++;
@@ -147,7 +158,6 @@ let UI = function () {
 				ties.textContent = '';
 				playerScore.textContent = `Player:: ${overallScore[0]}`;
 				computerScore.textContent = `Computer:: ${overallScore[1]}`;
-				results.style = 'padding: 5rem 10rem; border: 6px solid #c6d8ff; border-radius: 12px; margin: 0 auto;';
 
 				container.removeChild(buttons);
 				container.removeChild(overlay);
@@ -170,7 +180,6 @@ let UI = function () {
 				ties.textContent = '';
 				playerScore.textContent = `Player:: ${overallScore[0]}`;
 				computerScore.textContent = `Computer:: ${overallScore[1]}`;
-				results.style = 'padding: 5rem 10rem; border: 6px solid #c6d8ff; border-radius: 12px; margin: 0 auto;';
 
 				container.removeChild(buttons);
 				container.removeChild(overlay);
@@ -199,10 +208,7 @@ function again() {
 		scoreDiv.removeChild(playerScore)
 		scoreDiv.removeChild(computerScore)
 
-		results.style = 'padding: null; border: null; border-radius: null; margin: null';
-
 		container.appendChild(buttons);
-
 		container.appendChild(overlay);
 	}, { once: true });  //execute 'tryAgain' only once; without this, the code executes once->twice->...
 }
