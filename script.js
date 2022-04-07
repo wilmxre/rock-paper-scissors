@@ -77,16 +77,14 @@ function game(playerSelection) {
 		Array.from(button)[2].classList.remove('highlight-scissors');
 	}
 	else if (computerSelection === 'paper') {
-		Array.from(button)[1].classList.add('highlight-paper');
 		Array.from(button)[0].classList.remove('highlight-rock');
+		Array.from(button)[1].classList.add('highlight-paper');
 		Array.from(button)[2].classList.remove('highlight-scissors');
-		Array.from(button)[1].style = 'background: #fce762;';
 	}
 	else if (computerSelection === 'scissors') {
-		Array.from(button)[2].classList.add('highlight-scissors');
 		Array.from(button)[0].classList.remove('highlight-rock');
 		Array.from(button)[1].classList.remove('highlight-paper');
-		Array.from(button)[2].style = 'background: #f24236;';
+		Array.from(button)[2].classList.add('highlight-scissors');
 	}
 
 	if (res == 1) {
@@ -184,6 +182,10 @@ let UI = function () {
 				container.removeChild(buttons);
 				container.removeChild(overlay);
 
+				console.table(Array.from(button)[0].classList.remove('highlight-rock'),
+					Array.from(button)[1].classList.remove('highlight-paper'),
+					Array.from(button)[2].classList.remove('highlight-scissors'));
+
 				scoreDiv.appendChild(playerScore);
 				scoreDiv.appendChild(computerScore);
 				messageDiv.appendChild(winner);
@@ -202,6 +204,10 @@ function again() {
 		playerOverlay.textContent = `Player: 0`;
 		computerOverlay.textContent = `Computer: 0`;
 		tiesOverlay.textContent = `Ties: 0`;
+
+		Array.from(button)[0].classList.remove('highlight-rock');
+		Array.from(button)[1].classList.remove('highlight-paper');
+		Array.from(button)[2].classList.remove('highlight-scissors');
 
 		messageDiv.removeChild(winner);
 		messageDiv.removeChild(tryAgain);
