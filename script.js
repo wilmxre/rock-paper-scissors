@@ -182,10 +182,6 @@ let UI = function () {
 				container.removeChild(buttons);
 				container.removeChild(overlay);
 
-				console.table(Array.from(button)[0].classList.remove('highlight-rock'),
-					Array.from(button)[1].classList.remove('highlight-paper'),
-					Array.from(button)[2].classList.remove('highlight-scissors'));
-
 				scoreDiv.appendChild(playerScore);
 				scoreDiv.appendChild(computerScore);
 				messageDiv.appendChild(winner);
